@@ -16,6 +16,8 @@
 		D69222821F6B78A100FA5922 /* Tesla_Model_X.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D69222811F6B78A100FA5922 /* Tesla_Model_X.jpg */; };
 		D69222851F6B790300FA5922 /* MaterialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69222841F6B790300FA5922 /* MaterialView.swift */; };
 		D69222871F6B7C1500FA5922 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69222861F6B7C1500FA5922 /* ItemCell.swift */; };
+		D692228B1F6D6CB900FA5922 /* ItemDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D692228A1F6D6CB900FA5922 /* ItemDetailsVC.swift */; };
+		D692228D1F6F4C7600FA5922 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D692228C1F6F4C7600FA5922 /* CustomTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		D69222811F6B78A100FA5922 /* Tesla_Model_X.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Tesla_Model_X.jpg; sourceTree = "<group>"; };
 		D69222841F6B790300FA5922 /* MaterialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialView.swift; sourceTree = "<group>"; };
 		D69222861F6B7C1500FA5922 /* ItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
+		D692228A1F6D6CB900FA5922 /* ItemDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailsVC.swift; sourceTree = "<group>"; };
+		D692228C1F6F4C7600FA5922 /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,9 +66,10 @@
 		D6676DEC1F6B2E5B003537E8 /* DreamLister */ = {
 			isa = PBXGroup;
 			children = (
+				D69222891F6D6C8500FA5922 /* Controller */,
+				D69222881F6D6C7400FA5922 /* Model */,
 				D69222831F6B78E700FA5922 /* View */,
 				D6676DED1F6B2E5B003537E8 /* AppDelegate.swift */,
-				D6676DEF1F6B2E5B003537E8 /* MainVC.swift */,
 				D6676DF11F6B2E5B003537E8 /* Main.storyboard */,
 				D6676DF71F6B2E5B003537E8 /* Assets.xcassets */,
 				D69222811F6B78A100FA5922 /* Tesla_Model_X.jpg */,
@@ -82,6 +87,23 @@
 				D69222861F6B7C1500FA5922 /* ItemCell.swift */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		D69222881F6D6C7400FA5922 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		D69222891F6D6C8500FA5922 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D6676DEF1F6B2E5B003537E8 /* MainVC.swift */,
+				D692228A1F6D6CB900FA5922 /* ItemDetailsVC.swift */,
+				D692228C1F6F4C7600FA5922 /* CustomTextField.swift */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -158,6 +180,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D692228D1F6F4C7600FA5922 /* CustomTextField.swift in Sources */,
+				D692228B1F6D6CB900FA5922 /* ItemDetailsVC.swift in Sources */,
 				D6676DF01F6B2E5B003537E8 /* MainVC.swift in Sources */,
 				D6676DEE1F6B2E5B003537E8 /* AppDelegate.swift in Sources */,
 				D6676DF61F6B2E5B003537E8 /* DreamLister.xcdatamodeld in Sources */,

@@ -83,7 +83,8 @@ class MainVC: UIViewController, UITableViewDataSource,UITableViewDelegate, NSFet
         let dateSort = NSSortDescriptor(key: "created", ascending: false)
         let priceSort = NSSortDescriptor(key: "price", ascending: true)
         let titleSort = NSSortDescriptor(key: "title", ascending: true)
-        let typeSort = NSSortDescriptor(key: "type", ascending: true)
+        let typeSort = NSSortDescriptor(key: "toItemType.type", ascending: true)
+        
         
         if segment.selectedSegmentIndex == 0{
             fetchRequest.sortDescriptors = [dateSort]

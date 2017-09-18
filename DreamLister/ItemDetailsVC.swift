@@ -49,11 +49,9 @@ class ItemDetailsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
 //        store3.name = "Tesla Dealership"
 //        let store4 = Store(context: context)
 //        store4.name = "Target"
-//        let store5 = Store(context: context)
-//        store5.name = "Amazon"
 //        let store6 = Store(context: context)
 //        store6.name = "Walmart"
-        
+//        
 //        let type1 = ItemType(context: context)
 //        type1.type = "Computer"
 //        let type2 = ItemType(context: context)
@@ -163,10 +161,14 @@ class ItemDetailsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
             item.details = details
         }
         
+        
         item.created = NSDate()
+        print(item.created!)
         
         item.toStore = stores[storePicker.selectedRow(inComponent: 0)]
         item.toItemType = itemTypes[itemTypePicker.selectedRow(inComponent: 0)]
+       
+        
         
         ad.saveContext()
         

@@ -16,13 +16,14 @@ class ItemDetailsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
     @IBOutlet weak var priceField: CustomTextField!
     @IBOutlet weak var detailsField: CustomTextField!
     
-    @IBOutlet weak var itemTypePicker: UIPickerView!
+    
     @IBOutlet weak var thumbImg: UIImageView!
     
     var stores = [Store]()
     var itemTypes = [ItemType]()
     var itemToEdit: Item?
     var imagePicker: UIImagePickerController!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,39 +34,12 @@ class ItemDetailsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
         storePicker.delegate = self
         storePicker.dataSource = self
         
-        itemTypePicker.delegate = self
-        itemTypePicker.dataSource = self
         
         imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         
-        
-        
-//        let store = Store(context: context)
-//        store.name = "Best Buy"
-//        let store2 = Store(context: context)
-//        store2.name = "Amazon"
-//        let store3 = Store(context: context)
-//        store3.name = "Tesla Dealership"
-//        let store4 = Store(context: context)
-//        store4.name = "Target"
-//        let store6 = Store(context: context)
-//        store6.name = "Walmart"
-//        
-//        let type1 = ItemType(context: context)
-//        type1.type = "Computer"
-//        let type2 = ItemType(context: context)
-//        type2.type = "Headphones"
-//        let type3 = ItemType(context: context)
-//        type3.type = "Clothing"
-//        let type4 = ItemType(context: context)
-//        type4.type = "Monitor"
-//        let type5 = ItemType(context: context)
-//        type5.type = "Motor Vehicle"
-//        let type6 = ItemType(context: context)
-//        type6.type = "Digital Cameras"
-//        let type7 = ItemType(context: context)
-//        type7.type = "Movies, Music, Games"
+        //storeItemTypes()
+        //populateStores()
 
         ad.saveContext()
         getStores()
@@ -81,19 +55,18 @@ class ItemDetailsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
 
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if pickerView == storePicker{
+        if component == 0{
             let store = stores[row]
             return store.name
-        } else if pickerView == itemTypePicker{
+        } else {
             let itemType = itemTypes[row]
             return itemType.type
         }
-        return ""
 
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if pickerView == storePicker{
+        if component == 0{
             return stores.count
         } else{
             return itemTypes.count
@@ -102,7 +75,7 @@ class ItemDetailsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+        return 2
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -118,6 +91,8 @@ class ItemDetailsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
             self.storePicker.reloadAllComponents()
         } catch{
             //handle the error
+            let nserror = error as NSError
+            print(nserror.description)
             
         }
     }
@@ -127,11 +102,44 @@ class ItemDetailsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
         
         do{
             self.itemTypes = try context.fetch(fetchRequest)
-            self.itemTypePicker.reloadAllComponents()
+            self.storePicker.reloadAllComponents()
         } catch{
             //handle the error
+            let nserror = error as NSError
+            print(nserror.description)
         }
     
+    }
+    
+    func storeItemTypes(){
+        let type1 = ItemType(context: context)
+        type1.type = "Computer"
+        let type2 = ItemType(context: context)
+        type2.type = "Headphones"
+        let type3 = ItemType(context: context)
+        type3.type = "Clothing"
+        let type4 = ItemType(context: context)
+        type4.type = "Monitor"
+        let type5 = ItemType(context: context)
+        type5.type = "Motor Vehicle"
+        let type6 = ItemType(context: context)
+        type6.type = "Digital Cameras"
+        let type7 = ItemType(context: context)
+        type7.type = "Movies, Music, Games"
+    }
+    
+    func populateStores(){
+        let store = Store(context: context)
+        store.name = "Best Buy"
+        let store2 = Store(context: context)
+        store2.name = "Amazon"
+        let store3 = Store(context: context)
+        store3.name = "Tesla Dealership"
+        let store4 = Store(context: context)
+        store4.name = "Target"
+        let store6 = Store(context: context)
+        store6.name = "Walmart"
+
     }
 
     @IBAction func savePressed(_ sender: UIButton) {
@@ -163,11 +171,11 @@ class ItemDetailsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
         
         
         item.created = NSDate()
-        print(item.created!)
         
         item.toStore = stores[storePicker.selectedRow(inComponent: 0)]
-        item.toItemType = itemTypes[itemTypePicker.selectedRow(inComponent: 0)]
-       
+        item.toItemType = itemTypes[storePicker.selectedRow(inComponent: 1)]
+        
+
         
         
         ad.saveContext()
@@ -204,7 +212,7 @@ class ItemDetailsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
                 repeat{
                     let t = itemTypes[ndx]
                     if t.type == type.type{
-                        itemTypePicker.selectRow(ndx, inComponent: 0, animated: false)
+                        storePicker.selectRow(ndx, inComponent: 1, animated: false)
                         break
                     }
                     ndx += 1

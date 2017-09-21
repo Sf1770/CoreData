@@ -34,17 +34,20 @@ class ItemDetailsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
         storePicker.delegate = self
         storePicker.dataSource = self
         
-        
         imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         
-        //storeItemTypes()
-        //populateStores()
+//        storeItemTypes()
+//        populateStores()
+//
+//        ad.saveContext()
 
-        ad.saveContext()
+        
+        
         getStores()
         getItemTypes()
-        
+        stores = stores.sorted {$0.name! < $1.name!}
+        itemTypes = itemTypes.sorted { $0.type! < $1.type!}
         if itemToEdit != nil{
             loadItemData()
         }
@@ -126,6 +129,7 @@ class ItemDetailsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
         type6.type = "Digital Cameras"
         let type7 = ItemType(context: context)
         type7.type = "Movies, Music, Games"
+        
     }
     
     func populateStores(){
